@@ -1,36 +1,61 @@
-# Harshil Prashant Shah · Portfolio
+![Personal Portfolio](assets/header.svg)
 
-A personal portfolio presenting education, experience, four academic projects, leadership, and technical skills.
+<div align="center">
 
-**[Visit the live portfolio](https://harshil-prashant-shah.vercel.app/)**
+**Projects, research, experience, and the person behind them.**
 
-## Design
+HTML · CSS · JavaScript · Vercel
 
-A responsive dark interface with vibrant accents, animated ambient lighting, interactive cards, and expandable project case studies. A motion toggle and reduced-motion preference support let visitors control animation.
+[Portfolio](https://harshil-prashant-shah.vercel.app/) · [LinkedIn](https://www.linkedin.com/in/harshilpshah/) · [Explore the code](#repository-guide)
 
-## Built with
+</div>
 
-HTML, CSS, and JavaScript. Hosted on Vercel; no framework or build step is required.
+---
+
+## Explore the live website
+
+### [harshil-prashant-shah.vercel.app](https://harshil-prashant-shah.vercel.app/)
+
+A personal website that brings education, experience, academic projects, research references, leadership, and technical skills into one place.
+
+## Design details
+
+- Dark navy foundation with lime, cyan, violet, and coral accents.
+- Animated ambient lighting and orbital details.
+- Interactive cards, scroll reveals, and subtle button motion.
+- Expandable case studies with source-code and paper links.
+- Motion pause control and reduced-motion preference support.
+- Responsive layouts and semantic HTML.
 
 ## Run locally
 
-```sh
+```bash
 python3 -m http.server 8765 --directory dist
 ```
 
-Open `http://localhost:8765`.
+Open `http://localhost:8765`. There is no framework installation or build step.
 
-## Files
+## Repository guide
 
-- `dist/index.html` — content and page structure
-- `dist/style.css` — responsive layout and visual effects
-- `dist/script.js` — navigation, motion controls, and interactions
-- `vercel.json` — static deployment configuration
+- `dist/index.html` — page content and structure.
+- `dist/style.css` — layout, responsive rules, and visual effects.
+- `dist/script.js` — interactions and motion controls.
+- `vercel.json` — static hosting configuration.
 
-## Deployment
+## Deploy on Vercel
 
-Import this repository into Vercel, select **Other** as the framework, leave the build command empty, and set the output directory to `dist`.
+Import the repository, choose **Other** as the framework, leave the build command empty, and use `dist` as the output directory. The configuration is included in `vercel.json`.
 
-## Contact
+## Verification
 
-[LinkedIn](https://www.linkedin.com/in/harshilpshah/) · [Email](mailto:harshil.shah@tamu.edu)
+The deployed HTML was compared with the approved local version. Four source-code links and four research-reference links are present. Paper access is controlled by the respective publisher or Google Drive owner.
+
+## About the author
+
+**Harshil Prashant Shah** · MS in Management Information Systems, Texas A&M University.
+
+[Portfolio](https://harshil-prashant-shah.vercel.app/) · [LinkedIn](https://www.linkedin.com/in/harshilpshah/) · [GitHub](https://github.com/harshilshah250504)
+
+## Data and reuse
+
+Local datasets, credentials, and third-party research PDFs are not included. No blanket license is granted over third-party material. Refer to the original sources for their terms before redistributing data or publications.
