@@ -165,3 +165,27 @@ document.querySelectorAll('.button').forEach(button => {
     setTimeout(() => wave.remove(), 650);
   });
 });
+
+const explorerProjects = {
+  aqinsight: {label:'01 / ENVIRONMENTAL DATA',title:'AQInsight',description:'Exploring air quality alongside weather, traffic, and wildfire data.',stack:'XGBoost · K-Means · SHAP',nodes:['Weather','Air quality','Wildfires','Patterns','Clusters','Explanations'],color:'#8acbc0'},
+  phishing: {label:'02 / LANGUAGE & EMAIL RISK',title:'Phishing across languages',description:'Working with English and Hindi email features to explain classification decisions.',stack:'XGBoost · NLP · SHAP',nodes:['English','Hindi','Features','Classification','Risk signals','Explanations'],color:'#86b9d6'},
+  'statistical-testing': {label:'03 / STATISTICS',title:'Which statistical test?',description:'Using natural-language questions to explore non-parametric test selection.',stack:'Decision trees · NLP · Statistics',nodes:['Question','Data','Assumptions','Runs','Wilcoxon','Mann–Whitney'],color:'#a7aed5'},
+  finwizard: {label:'04 / FINANCIAL DATA',title:'FinWizard',description:'Exploring historical stock data, news sentiment, and deep learning models.',stack:'Python · CNN / RNN / LSTM · NLP',nodes:['Prices','News','Sentiment','CNN','RNN','LSTM'],color:'#e8ac91'}
+};
+const explorer = document.querySelector('.data-workspace');
+explorer.querySelectorAll('[data-project]').forEach(button => {
+  button.addEventListener('click', () => {
+    const key = button.dataset.project, project = explorerProjects[key];
+    explorer.querySelectorAll('[data-project]').forEach(tab => tab.setAttribute('aria-pressed', String(tab === button)));
+    explorer.style.setProperty('--explorer-color',project.color);
+    explorer.querySelector('.explorer-kicker').textContent = project.label;
+    explorer.querySelector('.explorer-title').textContent = project.title;
+    explorer.querySelector('.explorer-description').textContent = project.description;
+    explorer.querySelector('.explorer-stack').textContent = project.stack;
+    explorer.querySelector('.explorer-link').href = `#${key}`;
+    explorer.querySelectorAll('[data-node]').forEach(node => { node.textContent = project.nodes[Number(node.dataset.node)]; });
+    const detail = explorer.querySelector('.explorer-detail');
+    detail.classList.remove('changing');
+    if (!paused && !reducedMotion.matches) requestAnimationFrame(() => detail.classList.add('changing'));
+  });
+});
