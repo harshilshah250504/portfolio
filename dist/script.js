@@ -123,3 +123,45 @@ if ('IntersectionObserver' in window) {
     if (section) sectionObserver.observe(section);
   });
 }
+
+// Native links keep the skills grid usable without JavaScript.
+document.querySelectorAll('.bento-tile').forEach(tile => {
+  tile.addEventListener('pointermove', event => {
+    if (paused || !finePointer.matches) return;
+    const rect = tile.getBoundingClientRect();
+    tile.style.setProperty('--spot-x', `${event.clientX - rect.left}px`);
+    tile.style.setProperty('--spot-y', `${event.clientY - rect.top}px`);
+  }, {passive:true});
+});
+const caseSection = document.getElementById('case-studies');
+const caseTools = document.createElement('div');
+caseTools.className = 'case-tools';
+const caseControl = document.createElement('button');
+caseControl.type = 'button'; caseControl.className = 'case-control';
+caseTools.append(caseControl);
+caseSection.querySelector('.section-heading').after(caseTools);
+const cases = [...caseSection.querySelectorAll('details.case')];
+function updateCaseControl() {
+  const allOpen = cases.every(item => item.open);
+  caseControl.textContent = allOpen ? 'Collapse all case studies −' : 'Expand all case studies +';
+  caseControl.setAttribute('aria-expanded', String(allOpen));
+}
+caseControl.addEventListener('click', () => {
+  const open = !cases.every(item => item.open);
+  cases.forEach(item => { item.open = open; });
+  updateCaseControl();
+});
+cases.forEach(item => item.addEventListener('toggle', updateCaseControl));
+updateCaseControl();
+document.querySelectorAll('.button').forEach(button => {
+  button.addEventListener('click', event => {
+    if (paused || reducedMotion.matches) return;
+    const rect = button.getBoundingClientRect();
+    const wave = document.createElement('span');
+    wave.className = 'click-wave'; wave.setAttribute('aria-hidden', 'true');
+    wave.style.left = `${(event.detail ? event.clientX - rect.left : rect.width / 2) - 10}px`;
+    wave.style.top = `${(event.detail ? event.clientY - rect.top : rect.height / 2) - 10}px`;
+    button.append(wave);
+    setTimeout(() => wave.remove(), 650);
+  });
+});
