@@ -59,3 +59,7 @@ The deployed HTML was compared with the approved local version. Four source-code
 ## Data and reuse
 
 Local datasets, credentials, and third-party research PDFs are not included. No blanket license is granted over third-party material. Refer to the original sources for their terms before redistributing data or publications.
+
+## Publishing updates
+
+The production site is https://harshil-prashant-shah.vercel.app/. Local file saves only change the local preview. The Vercel project currently uses direct deployments; automatic GitHub deployments require connecting the owner’s GitHub account in Vercel and linking this repository. Once configured, commits pushed to `main` can deploy automatically. Editing a resume or LinkedIn profile does not automatically change this static website.
