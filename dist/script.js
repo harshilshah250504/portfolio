@@ -189,3 +189,87 @@ explorer.querySelectorAll('[data-project]').forEach(button => {
     if (!paused && !reducedMotion.matches) requestAnimationFrame(() => detail.classList.add('changing'));
   });
 });
+
+// Start dashboard enhances the complete, readable HTML portfolio.
+const dashboard = document.querySelector('.welcome-dashboard');
+dashboard.id = 'home';
+const sectionWindow = document.querySelector('.section-window');
+const windowContent = sectionWindow.querySelector('.section-window-content');
+const sectionNames = {education:'🎓 Education',experience:'💼 Experience',work:'📊 Projects','case-studies':'📚 Research',about:'🙋 About me',beyond:'🌱 Beyond work',contact:'✉ Say hello'};
+let movedSections = [];
+let lastDashboardTrigger = null;
+function restoreSections() {
+  movedSections.forEach(({section,marker}) => { marker.replaceWith(section); });
+  movedSections = [];
+}
+function showDashboard() {
+  if (sectionWindow.open) sectionWindow.close();
+  restoreSections();
+  document.body.classList.add('dashboard-mode');
+  dashboard.hidden = false;
+  document.querySelectorAll('.header nav a').forEach(link => { link.classList.remove('active'); link.removeAttribute('aria-current'); });
+  history.replaceState(null,'',location.pathname + location.search);
+  window.scrollTo({top:0,behavior:'instant'});
+}
+function showFullPortfolio(target) {
+  if (sectionWindow.open) sectionWindow.close();
+  restoreSections();
+  document.body.classList.remove('dashboard-mode');
+  dashboard.hidden = true;
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  if (target) document.getElementById(target)?.scrollIntoView({behavior:paused?'instant':'smooth'});
+  else window.scrollTo({top:0,behavior:'instant'});
+}
+function openSection(key,trigger) {
+  const detailTarget = document.getElementById(key);
+  if (!detailTarget) return;
+  restoreSections();
+  let group = key;
+  if (detailTarget.matches('details.case')) group = 'case-studies';
+  const ids = group === 'work' ? ['work','case-studies'] : group === 'about' ? ['about','strengths'] : group === 'beyond' ? ['beyond','leadership'] : [group];
+  ids.forEach(id => {
+    const section = document.getElementById(id);
+    if (!section) return;
+    const marker = document.createComment(`section:${id}`);
+    section.before(marker); movedSections.push({section,marker}); windowContent.append(section);
+  });
+  sectionWindow.querySelector('#section-window-title').textContent = sectionNames[group] || 'Explore';
+  lastDashboardTrigger = trigger || lastDashboardTrigger;
+  if (!sectionWindow.open) sectionWindow.showModal();
+  sectionWindow.scrollTop = 0;
+  if (detailTarget.matches('details.case')) { detailTarget.open = true; detailTarget.scrollIntoView({block:'nearest'}); }
+  sectionWindow.querySelector('.close-section').focus({preventScroll:true});
+}
+document.querySelectorAll('[data-open-section]').forEach(button => button.addEventListener('click', () => openSection(button.dataset.openSection,button)));
+sectionWindow.querySelector('.close-section').addEventListener('click', () => sectionWindow.close());
+sectionWindow.addEventListener('close', () => { restoreSections(); if (document.body.classList.contains('dashboard-mode')) history.replaceState(null,'',location.pathname+location.search); lastDashboardTrigger?.focus({preventScroll:true}); });
+document.querySelector('.read-portfolio').addEventListener('click', () => showFullPortfolio());
+document.addEventListener('click',event => {
+  const anchor = event.target.closest('a[href^="#"]');
+  if (!anchor) return;
+  const key = anchor.getAttribute('href').slice(1);
+  if (key === 'home') { event.preventDefault(); showDashboard(); return; }
+  if (!document.body.classList.contains('dashboard-mode')) return;
+  if (key === 'main' || !key) { event.preventDefault(); showFullPortfolio(); return; }
+  const target = document.getElementById(key);
+  if (!target) return;
+  if (sectionWindow.contains(target)) return;
+  event.preventDefault(); openSection(key,anchor);
+});
+const greetingWord = document.querySelector('.greeting-word');
+const greetings = ['Hello.','Namaste.','Ciao.','Bonjour.','Kem cho.'];
+let greetingIndex = 0;
+setInterval(() => {
+  if (paused || reducedMotion.matches || document.hidden || dashboard.hidden || sectionWindow.open) return;
+  greetingIndex = (greetingIndex + 1) % greetings.length;
+  greetingWord.textContent = greetings[greetingIndex];
+  greetingWord.classList.remove('greeting-enter');
+  requestAnimationFrame(() => greetingWord.classList.add('greeting-enter'));
+},2800);
+const greetingToggle = document.querySelector('.dashboard-motion');
+function syncGreetingToggle() { greetingToggle.textContent = paused ? 'Resume greetings' : 'Pause greetings'; greetingToggle.setAttribute('aria-pressed',String(paused)); }
+greetingToggle.addEventListener('click',() => { paused = !paused; updateMotion(); syncGreetingToggle(); });
+toggle.addEventListener('click',syncGreetingToggle);
+reducedMotion.addEventListener('change',syncGreetingToggle);
+syncGreetingToggle();
+if (!location.hash || location.hash === '#home') showDashboard();
