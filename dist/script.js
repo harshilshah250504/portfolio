@@ -192,7 +192,7 @@ explorer.querySelectorAll('[data-project]').forEach(button => {
 
 // Start dashboard enhances the complete, readable HTML portfolio.
 const dashboard = document.querySelector('.welcome-dashboard');
-dashboard.id = 'home';
+if (dashboard) dashboard.id = 'home';
 const sectionWindow = document.querySelector('.section-window');
 const windowContent = sectionWindow.querySelector('.section-window-content');
 const sectionNames = {education:'🎓 Education',experience:'💼 Experience',work:'📊 Projects','case-studies':'📚 Research',about:'🙋 About me',beyond:'🌱 Beyond work',contact:'✉ Say hello'};
@@ -206,7 +206,7 @@ function showDashboard() {
   if (sectionWindow.open) sectionWindow.close();
   restoreSections();
   document.body.classList.add('dashboard-mode');
-  dashboard.hidden = false;
+  if (dashboard) dashboard.hidden = false;
   document.querySelectorAll('.header nav a').forEach(link => { link.classList.remove('active'); link.removeAttribute('aria-current'); });
   history.replaceState(null,'',location.pathname + location.search);
   window.scrollTo({top:0,behavior:'instant'});
@@ -215,7 +215,7 @@ function showFullPortfolio(target) {
   if (sectionWindow.open) sectionWindow.close();
   restoreSections();
   document.body.classList.remove('dashboard-mode');
-  dashboard.hidden = true;
+  if (dashboard) dashboard.hidden = true;
   document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
   if (target) document.getElementById(target)?.scrollIntoView({behavior:paused?'instant':'smooth'});
   else window.scrollTo({top:0,behavior:'instant'});
@@ -243,7 +243,7 @@ function openSection(key,trigger) {
 document.querySelectorAll('[data-open-section]').forEach(button => button.addEventListener('click', () => openSection(button.dataset.openSection,button)));
 sectionWindow.querySelector('.close-section').addEventListener('click', () => sectionWindow.close());
 sectionWindow.addEventListener('close', () => { restoreSections(); if (document.body.classList.contains('dashboard-mode')) history.replaceState(null,'',location.pathname+location.search); lastDashboardTrigger?.focus({preventScroll:true}); });
-document.querySelector('.read-portfolio').addEventListener('click', () => showFullPortfolio());
+document.querySelector('.read-portfolio')?.addEventListener('click', () => showFullPortfolio());
 document.addEventListener('click',event => {
   const anchor = event.target.closest('a[href^="#"]');
   if (!anchor) return;
@@ -260,16 +260,16 @@ const greetingWord = document.querySelector('.greeting-word');
 const greetings = ['Hello.','Namaste.','Ciao.','Bonjour.','Kem cho.'];
 let greetingIndex = 0;
 setInterval(() => {
-  if (paused || reducedMotion.matches || document.hidden || dashboard.hidden || sectionWindow.open) return;
+  if (!dashboard || !greetingWord || paused || reducedMotion.matches || document.hidden || dashboard.hidden || sectionWindow.open) return;
   greetingIndex = (greetingIndex + 1) % greetings.length;
   greetingWord.textContent = greetings[greetingIndex];
   greetingWord.classList.remove('greeting-enter');
   requestAnimationFrame(() => greetingWord.classList.add('greeting-enter'));
 },2800);
 const greetingToggle = document.querySelector('.dashboard-motion');
-function syncGreetingToggle() { greetingToggle.textContent = paused ? 'Resume greetings' : 'Pause greetings'; greetingToggle.setAttribute('aria-pressed',String(paused)); }
-greetingToggle.addEventListener('click',() => { paused = !paused; updateMotion(); syncGreetingToggle(); });
-toggle.addEventListener('click',syncGreetingToggle);
+function syncGreetingToggle() { if (!greetingToggle) return; greetingToggle.textContent = paused ? 'Resume greetings' : 'Pause greetings'; greetingToggle.setAttribute('aria-pressed',String(paused)); }
+greetingToggle?.addEventListener('click',() => { paused = !paused; updateMotion(); syncGreetingToggle(); });
+toggle?.addEventListener('click',syncGreetingToggle);
 reducedMotion.addEventListener('change',syncGreetingToggle);
 syncGreetingToggle();
 if (location.pathname.endsWith('/portfolio.html')) { showFullPortfolio(); } else if (!location.hash || location.hash === '#home') { showDashboard(); }
