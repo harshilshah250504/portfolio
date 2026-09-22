@@ -38,3 +38,29 @@
 
 /* 2026 editorial analytics cover */
 .cover-page{margin:0;background:#f2f0e9;color:#141414;font-family:Inter,Arial,sans-serif;min-height:100vh}.cover-page *{box-sizing:border-box}.cover-shell{min-height:100vh;padding:28px 4vw 22px;display:flex;flex-direction:column}.cover-nav{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #bbb8ae;padding-bottom:18px}.cover-nav a{color:#141414;text-decoration:none}.cover-mark{font-size:20px;font-weight:800;letter-spacing:-1px}.cover-nav div{display:flex;gap:24px;font-size:12px}.cover-grid{flex:1;display:grid;grid-template-columns:1.08fr .92fr;gap:6vw;align-items:center;padding:7vh 0}.cover-kicker,.cover-report small{font-size:10px;letter-spacing:.16em;font-weight:700}.cover-copy h1{font-size:clamp(64px,8.4vw,132px);line-height:.82;letter-spacing:-.075em;margin:24px 0 30px;font-weight:650}.cover-copy h1 em{font-family:Georgia,serif;font-weight:400}.cover-copy p{max-width:480px;font-size:18px;line-height:1.55;color:#55534d}.cover-enter{margin-top:42px;width:min(420px,100%);display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-top:1px solid #151515;border-bottom:1px solid #151515;color:#151515;text-decoration:none;font-size:14px;text-transform:uppercase;letter-spacing:.08em}.cover-enter b{font-size:23px;font-weight:400}.cover-report{background:#171717;color:#f4f1e8;padding:22px;border-radius:2px;box-shadow:18px 18px 0 #d9d5ca}.report-head{display:flex;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid #3e3e3e;font-size:9px;letter-spacing:.12em}.report-head span:last-child{color:#b6d876}.report-big{padding:38px 0;border-bottom:1px solid #3e3e3e}.cover-report small{display:block;color:#8e8e89;margin-bottom:10px}.cover-report strong{display:block;font-size:clamp(32px,4vw,58px);letter-spacing:-.05em;margin-bottom:8px}.cover-report span{font-size:12px;color:#aaa7a0}.report-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #3e3e3e}.report-row>div{padding:24px 12px 24px 0}.report-row>div+div{border-left:1px solid #3e3e3e;padding-left:22px}.report-row strong{font-size:18px;letter-spacing:-.03em}.report-route{display:flex;align-items:center;gap:12px;padding-top:22px}.report-route i{height:1px;background:#777;flex:1;position:relative}.report-route i:after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;background:#b6d876;border-radius:50%}.cover-footer{display:flex;justify-content:space-between;border-top:1px solid #bbb8ae;padding-top:16px;font-size:10px;letter-spacing:.1em;text-transform:uppercase}@media(max-width:800px){.cover-grid{grid-template-columns:1fr;padding:55px 0}.cover-report{box-shadow:10px 10px 0 #d9d5ca}.cover-copy h1{font-size:clamp(58px,18vw,95px)}.cover-footer{gap:20px;align-items:flex-end}.cover-footer span:last-child{text-align:right}}@media(max-width:480px){.cover-shell{padding:20px}.cover-nav div{gap:12px}.cover-copy p{font-size:15px}.report-row{grid-template-columns:1fr}.report-row>div+div{border-left:0;border-top:1px solid #3e3e3e;padding-left:0}.cover-footer span:last-child{display:none}}
+
+
+/* Portfolio hub: restrained editorial dashboard */
+body:not(.cover-page){background:#f4f2ec!important;color:#171717!important}
+body:not(.cover-page) .ambient-scene,body:not(.cover-page) .cursor-glow{display:none!important}
+body:not(.cover-page) .header{background:rgba(244,242,236,.94)!important;border-bottom:1px solid #cbc7bd!important;backdrop-filter:blur(12px)}
+body:not(.cover-page) .header a,body:not(.cover-page) .brand{color:#171717!important}
+body:not(.cover-page) .hero{min-height:72vh!important;background:transparent!important;border-bottom:1px solid #c7c3b8}
+body:not(.cover-page) .hero h1{color:#171717!important;letter-spacing:-.07em}
+body:not(.cover-page) .hero-summary,body:not(.cover-page) .section-heading>p,body:not(.cover-page) .experience-row p{color:#68655e!important}
+body:not(.cover-page) .skills-ribbon{background:#171717!important;color:#f4f2ec!important}
+body:not(.cover-page) .section{border-bottom:1px solid #c7c3b8}
+body:not(.cover-page) .section-heading h2,body:not(.cover-page) h3,body:not(.cover-page) h4{color:#171717!important}
+body:not(.cover-page) .eyebrow{color:#656159!important}
+body:not(.cover-page) .education-grid article,body:not(.cover-page) .project,body:not(.cover-page) .beyond-card{background:transparent!important;border:1px solid #c7c3b8!important;box-shadow:none!important;border-radius:2px!important}
+body:not(.cover-page) .data-workspace{background:#171717!important;border-radius:2px!important;box-shadow:none!important}
+body:not(.cover-page) .project{transform:none!important}
+body:not(.cover-page) .project:before,body:not(.cover-page) .beyond-card:before{display:none!important}
+body:not(.cover-page) .tags span{background:#e7e3da!important;color:#44413c!important;border-color:#d2cec4!important}
+body:not(.cover-page) .experience-row{border-color:#c7c3b8!important}
+body:not(.cover-page) .case{background:transparent!important;border:0!important;border-top:1px solid #aaa69c!important;border-radius:0!important}
+body:not(.cover-page) .case:last-of-type{border-bottom:1px solid #aaa69c!important}
+body:not(.cover-page) .case summary{color:#171717!important}
+body:not(.cover-page) .button{border-radius:0!important;background:#171717!important;color:#f4f2ec!important}
+body:not(.cover-page) .text-link{color:#171717!important;text-decoration-color:#99958b!important}
+body:not(.cover-page) .reading-progress{background:#171717!important}
