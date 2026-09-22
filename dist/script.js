@@ -272,4 +272,4 @@ greetingToggle.addEventListener('click',() => { paused = !paused; updateMotion()
 toggle.addEventListener('click',syncGreetingToggle);
 reducedMotion.addEventListener('change',syncGreetingToggle);
 syncGreetingToggle();
-if (!location.hash || location.hash === '#home') showDashboard();
+if (location.pathname.endsWith('/portfolio.html')) { showFullPortfolio(); } else if (!location.hash || location.hash === '#home') { showDashboard(); }
